@@ -1,0 +1,19 @@
+name: CRON
+
+on:
+  schedule:
+    - cron: '0 0 * * 1' # At 00:00 on Monday
+  workflow_dispatch:
+
+jobs:
+  update_token:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: '~1.16'
+
+      - name: unit test
+        run: |
+          deno test -c deno.config.json -j
