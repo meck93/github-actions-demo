@@ -27,3 +27,9 @@ jobs:
         run: |
           deno test -c deno.config.json -j --coverage=coverage_profile --no-check
           deno coverage -q --include="^file:.*/src/.*" coverage_profile
+
+      - name: upload coverage_profile
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-profile
+          path: ${{ github.workspace }}/coverage_profile
