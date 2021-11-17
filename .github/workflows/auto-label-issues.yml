@@ -1,0 +1,13 @@
+name: Auto Label New Issues
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  auto-label-new-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: label newly created issues
+        uses: andymckay/labeler@master # source: https://github.com/andymckay/labeler
+        with:
+          add-labels: 'needs-triage'

@@ -1,0 +1,29 @@
+name: PR CI
+
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+      - '!**.md'
+
+jobs:
+  lint-format-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: '~1.16'
+
+      - name: lint
+        run: |
+          deno lint -c deno.config.json
+
+      - name: check formatting
+        run: |
+          deno fmt -c deno.config.json --check
+
+      - name: unit test
+        run: |
+          deno test -c deno.config.json -j --coverage=coverage_profile --no-check
+          deno coverage -q --include="^file:.*/src/.*" coverage_profile
