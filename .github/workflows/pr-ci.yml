@@ -61,5 +61,7 @@ jobs:
       - uses: denoland/setup-deno@v1
         with:
           deno-version: '~1.16'
+      - name: test connection to redis
+        run: docker exec -i $(docker ps -f name=redis -q) redis-cli -a Test1234 KEYS *
       - name: run integration tests
         run: echo "testing testing... everything ok!"
