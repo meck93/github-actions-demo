@@ -5,6 +5,13 @@ on:
     paths:
       - 'src/**'
       - '!**.md'
+  workflow_dispatch:
+
+env:
+  TZ: Europe/Zurich
+  ACTIONS_STEP_DEBUG: true
+  ACTIONS_RUNNER_DEBUG: true
+  TEST_SECRET: ${{ secrets.TEST_SECRET }}
 
 jobs:
   demo-action:
@@ -21,3 +28,4 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "This is a secret ${{ env.TEST_SECRET }} and this too ${{ secrets.TEST_SECRET }}."
