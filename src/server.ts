@@ -1,4 +1,4 @@
-import { connect, serve, parseURL } from "../dependencies.ts";
+import { connect, parseURL, serve } from "../dependencies.ts";
 import { add } from "./addition.ts";
 
 const redisOptions = parseURL("redis://:Test1234@127.0.0.1:6379");
