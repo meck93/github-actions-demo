@@ -13,5 +13,5 @@
 **/node_modules/
 
 # test coverage
-**/coverage/
+**/coverage_profile/
 .vercel
